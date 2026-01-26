@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>home - Your site</title>
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrapper">
+      <a class="site-title" href="/">your site</a>
+      <nav class="site-nav">
+        <a href="/">home</a>
+        <a href="/all/">all</a>
+        <a href="/about/">about</a>
+      </nav>
+    </div>
+  </header>
+  <main class="page-content">
+    <div class="wrapper">
+      <div class="banner">
+        <img src="/assets/img/banner.png" alt="your site">
+      </div>
+      <div class="container">
+        <div class="content">
+          
+<h1>Welcome to the site</h1>
+<p>Topics on this site are great.</p>
+
+<h2>Posts</h2>
+<input type="text" id="search-input" placeholder="search...">
+<ul id="results-container"></ul>
+
+<ul class="post-list">
+
+<li>
+  <span class="post-meta">Jan 26, 2026</span>
+  <a href="/tags/demo/" class="tag">demo</a> 
+  <h3><a class="post-link" href="/posts/draft/">Draft Post</a></h3>
+  <div class="summary"><p>This is a draft.</p>
+</div>
+</li>
+
+</ul>
+<nav class="pagination">
+  
+  page 1 of 1
+  
+</nav>
+
+<script src="/assets/js/simple-jekyll-search.min.js"></script>
+<script>
+SimpleJekyllSearch({
+  searchInput: document.getElementById('search-input'),
+  resultsContainer: document.getElementById('results-container'),
+  json: '/search.json'
+})
+</script>
+
+        </div>
+        <aside>
+	  <h3>tags</h3>
+	  <a href="/tags/demo/">demo (1)</a>
+	</aside>
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="wrapper">
+      you | you.you@example.com
+    </div>
+  </footer>
+  <script src="/assets/js/mermaid.min.js"></script>
+  <script>mermaid.initialize({startOnLoad:true});</script>
+</body>
+</html>
