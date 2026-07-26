@@ -36,9 +36,9 @@ func LoadSite(opts Options) *Site {
 
 		post, err := ParsePost(path)
 		if err != nil {
-		s.Errors = append(s.Errors, err.Error())
-		fmt.Printf("FAILED: %s - %v\n", path, err)
-		return nil
+			s.Errors = append(s.Errors, err.Error())
+			fmt.Printf("FAILED: %s - %v\n", path, err)
+			return nil
 		}
 		fmt.Printf("OK: %s\n", path)
 

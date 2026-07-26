@@ -1,4 +1,2 @@
 // display.go
 package main
-
-

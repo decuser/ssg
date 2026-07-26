@@ -85,6 +85,10 @@ func Render(site *Site, opts Options) error {
 		return err
 	}
 
+	if err := renderRSS(site, opts); err != nil {
+		return err
+	}
+
 	// create .nojekyll
 	os.WriteFile(filepath.Join(opts.Output, ".nojekyll"), []byte{}, 0644)
 

@@ -17,13 +17,20 @@ cd site-src
 
 Or from anywhere:
 ```
-ssg -p /path/to/_posts -o /path/to/output
+ssg -p /path/to/_posts -o /path/to/output \
+  -url https://example.com \
+  -title "Example Site" \
+  -description "Notes and essays"
 ```
 
 ### Options
 ```
 -o string    output directory (required)
 -p string    posts directory (default "_posts")
+-url string  public base URL; required for feed.xml
+-title string site title used in RSS (default "Site")
+-description string site description used in RSS
+-language string RSS language (default "en-us")
 -draft       include draft posts
 -d           debug output
 -v           show version
@@ -63,3 +70,11 @@ python3 -m http.server 8000
 ## Dependencies
 
 - goldmark (vendored)
+
+
+## RSS
+
+Each build writes `feed.xml` at the output root. The feed uses RSS 2.0,
+contains each post's summary and full rendered HTML, and converts root-relative
+links and images in full content to absolute URLs. The `-url` option is required
+because RSS item links must be absolute.

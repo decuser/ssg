@@ -12,11 +12,15 @@ const appName = "ssg"
 var version = "dev"
 
 type Options struct {
-	Version bool
-	Debug   bool
-	Draft   bool
-	Output  string
-	Posts   string
+	Version         bool
+	Debug           bool
+	Draft           bool
+	Output          string
+	Posts           string
+	BaseURL         string
+	SiteTitle       string
+	SiteDescription string
+	Language        string
 }
 
 func parseOptions() Options {
@@ -25,6 +29,10 @@ func parseOptions() Options {
 	draft := flag.Bool("draft", false, "include draft posts")
 	output := flag.String("o", "", "output directory (required)")
 	posts := flag.String("p", "_posts", "posts directory")
+	baseURL := flag.String("url", "", "public base URL (required for RSS, e.g. https://example.com)")
+	siteTitle := flag.String("title", "Site", "site title used in RSS")
+	siteDescription := flag.String("description", "", "site description used in RSS")
+	language := flag.String("language", "en-us", "site language used in RSS")
 	help := flag.Bool("h", false, "show help")
 
 	flag.Usage = func() {
@@ -54,10 +62,14 @@ func parseOptions() Options {
 	}
 
 	return Options{
-		Version: *showVersion,
-		Debug:   *debug,
-		Draft:   *draft,
-		Output:  *output,
-		Posts:   *posts,
+		Version:         *showVersion,
+		Debug:           *debug,
+		Draft:           *draft,
+		Output:          *output,
+		Posts:           *posts,
+		BaseURL:         *baseURL,
+		SiteTitle:       *siteTitle,
+		SiteDescription: *siteDescription,
+		Language:        *language,
 	}
 }
