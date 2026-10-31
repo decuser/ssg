@@ -10,6 +10,7 @@ import (
 	"time"
 
 	"github.com/yuin/goldmark"
+	"github.com/yuin/goldmark/extension"
 	"github.com/yuin/goldmark/renderer/html"
 )
 
@@ -144,6 +145,9 @@ func splitContent(body []byte) (summary string, content string) {
 	}
 
 	md := goldmark.New(
+		goldmark.WithExtensions(
+			extension.Table,
+		),
 		goldmark.WithRendererOptions(
 			html.WithUnsafe(),
 		),

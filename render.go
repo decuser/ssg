@@ -77,6 +77,10 @@ func Render(site *Site, opts Options) error {
 		return err
 	}
 
+	if err := renderResearch(tagInfo, opts); err != nil {
+		return err
+	}
+
 	if err := copyAssets(opts); err != nil {
 		return err
 	}
@@ -316,6 +320,24 @@ func renderAbout(tagInfo []TagInfo, opts Options) error {
 	}
 	outPath := filepath.Join(opts.Output, "about", "index.html")
 	return writeTemplate(tmpl, outPath, pageData)
+}
+
+func renderResearch(tagInfo []TagInfo, opts Options) error {
+	tmpl, err := loadTemplate("research.html")
+	if err != nil {
+		return err
+	}
+	data, err := os.ReadFile("content/research.md")
+	if err != nil {
+		return err
+	}
+	md := goldmark.New(goldmark.WithRendererOptions(html.WithUnsafe()))
+	var buf bytes.Buffer
+	if err := md.Convert(data, &buf); err != nil {
+		return err
+	}
+	pageData := PageData{Title: "research", Tags: tagInfo, Content: template.HTML(buf.String())}
+	return writeTemplate(tmpl, filepath.Join(opts.Output, "research", "index.html"), pageData)
 }
 
 func writeTemplate(tmpl *template.Template, outPath string, data PageData) error {
